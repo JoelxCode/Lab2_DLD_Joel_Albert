@@ -1,4 +1,4 @@
-/*
+a	/*
  Data Encryption Standard (S-DES)
  64-bit 16-round block cipher encryption and decryption algorithm 
  using 56-bit key (64-bit key with Parity).
@@ -35,6 +35,65 @@ module PC1 (key, left_block, right_block);
    input logic [63:0]  key;
    output logic [27:0] left_block;
    output logic [27:0] right_block;
+// Input my permutation choices 
+   assign left_block[27] = key[64-57];
+   assign left_block[26] = key[64-49];
+   assign left_block[25] = key[64-41];   
+   assign left_block[24] = key[64-33];   
+   assign left_block[23] = key[64-25];
+   assign left_block[22] = key[64-17];   
+   assign left_block[21] = key[64-9];
+   assign left_block[20] = key[64-1];
+   assign left_block[19] = key[64-58];
+   assign left_block[18] = key[64-50];
+   assign left_block[17] = key[64-42];
+   assign left_block[16] = key[64-34];
+   assign left_block[15] = key[64-26];
+   assign left_block[14] = key[64-18];   
+   assign left_block[13] = key[64-10];
+   assign left_block[12] = key[64-2];   
+   assign left_block[11] = key[64-59];
+   assign left_block[10] = key[64-51];
+   assign left_block[9] = key[64-43];
+   assign left_block[8] = key[64-35];
+   assign left_block[7] = key[64-27];
+   assign left_block[6] = key[64-19];
+   assign left_block[5] = key[64-11];
+   assign left_block[4] = key[64-3];   
+   assign left_block[3] = key[64-60];
+   assign left_block[2] = key[64-52];    
+   assign left_block[1] = key[64-44];
+   assign left_block[0] = key[64-36];
+
+
+   assign right_block[28] = key[64-63];
+   assign right_block[27] = key[64-55];
+   assign right_block[26] = key[64-47];
+   assign right_block[25] = key[64-39];   
+   assign right_block[24] = key[64-31];   
+   assign right_block[23] = key[64-23];
+   assign right_block[22] = key[64-15];   
+   assign right_block[21] = key[64-7];
+   assign right_block[20] = key[64-62];
+   assign right_block[19] = key[64-54];
+   assign right_block[18] = key[64-46];
+   assign right_block[17] = key[64-38];
+   assign right_block[16] = key[64-30];
+   assign right_block[15] = key[64-22];
+   assign right_block[14] = key[64-14];   
+   assign right_block[13] = key[64-6];
+   assign right_block[12] = key[64-61];   
+   assign right_block[11] = key[64-53];
+   assign right_block[10] = key[64-45];
+   assign right_block[9] = key[64-37];
+   assign right_block[8] = key[64-29];
+   assign right_block[7] = key[64-21];
+   assign right_block[6] = key[64-13];
+   assign right_block[5] = key[64-5];
+   assign right_block[4] = key[64-28];   
+   assign right_block[3] = key[64-20];
+   assign right_block[2] = key[64-12];    
+   assign right_block[1] = key[64-4];
 
    logic [55:0]        out_block;
 
@@ -42,8 +101,69 @@ endmodule // PC1
 
 module PC2 (left_block, right_block, subkey);
 
+
    input logic [27:0] left_block;
    input logic [27:0] right_block;
+
+   assign left_block[27] = key[64-57];
+   assign left_block[26] = key[64-49];
+   assign left_block[25] = key[64-41];   
+   assign left_block[24] = key[64-33];   
+   assign left_block[23] = key[64-25];
+   assign left_block[22] = key[64-17];   
+   assign left_block[21] = key[64-9];
+   assign left_block[20] = key[64-1];
+   assign left_block[19] = key[64-58];
+   assign left_block[18] = key[64-50];
+   assign left_block[17] = key[64-42];
+   assign left_block[16] = key[64-34];
+   assign left_block[15] = key[64-26];
+   assign left_block[14] = key[64-18];   
+   assign left_block[13] = key[64-10];
+   assign left_block[12] = key[64-2];   
+   assign left_block[11] = key[64-59];
+   assign left_block[10] = key[64-51];
+   assign left_block[9] = key[64-43];
+   assign left_block[8] = key[64-35];
+   assign left_block[7] = key[64-27];
+   assign left_block[6] = key[64-19];
+   assign left_block[5] = key[64-11];
+   assign left_block[4] = key[64-3];   
+   assign left_block[3] = key[64-60];
+   assign left_block[2] = key[64-52];    
+   assign left_block[1] = key[64-44];
+   assign left_block[0] = key[64-36];
+// start the mapping of the right block
+   assign right_block[28] = key[64-63];
+   assign right_block[27] = key[64-55];
+   assign right_block[26] = key[64-47];
+   assign right_block[25] = key[64-39];   
+   assign right_block[24] = key[64-31];   
+   assign right_block[23] = key[64-23];
+   assign right_block[22] = key[64-15];   
+   assign right_block[21] = key[64-7];
+   assign right_block[20] = key[64-62];
+   assign right_block[19] = key[64-54];
+   assign right_block[18] = key[64-46];
+   assign right_block[17] = key[64-38];
+   assign right_block[16] = key[64-30];
+   assign right_block[15] = key[64-22];
+   assign right_block[14] = key[64-14];   
+   assign right_block[13] = key[64-6];
+   assign right_block[12] = key[64-61];   
+   assign right_block[11] = key[64-53];
+   assign right_block[10] = key[64-45];
+   assign right_block[9] = key[64-37];
+   assign right_block[8] = key[64-29];
+   assign right_block[7] = key[64-21];
+   assign right_block[6] = key[64-13];
+   assign right_block[5] = key[64-5];
+   assign right_block[4] = key[64-28];   
+   assign right_block[3] = key[64-20];
+   assign right_block[2] = key[64-12];    
+   assign right_block[1] = key[64-4];
+
+   logic [55:0]        out_block;
    output logic [47:0] subkey;
 
 endmodule // PC2
@@ -80,6 +200,8 @@ module round (inp_block, subkey, out_block);
    output logic [63:0] out_block;
 
 endmodule // round1
+
+//This is where you begin to work ~J~
 
 // Initial Permutation
 module IP (inp_block, out_block);
