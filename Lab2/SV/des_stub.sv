@@ -1,4 +1,4 @@
-a	/*
+/*
  Data Encryption Standard (S-DES)
  64-bit 16-round block cipher encryption and decryption algorithm 
  using 56-bit key (64-bit key with Parity).
@@ -27,6 +27,74 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    output logic [47:0] SubKey14;
    output logic [47:0] SubKey15;
    output logic [47:0] SubKey16;
+   
+   //instantiate PC1
+   PC1 perm(key,C1,D1);
+   // Left Shifts (Creates our 15 Kn values)
+   assign C2 = {C1[26:0],C1[27]};
+   assign D2 = {D1[26:0],D1[27]};
+   PC2 PC2_1(C2, D2, SubKey1);
+
+   assign C3 = {C2[26:0],C2[27]};
+   assign D2 = {D2[26:0],D2[27]};
+   PC2 PC2_2(C3, D3, SubKey2);
+   
+   assign C4 = {C3[25:0],C3[27:26]};
+   assign D2 = {D3[26:0],D3[27]};
+   PC2 PC2_3(C4, D4, SubKey3);
+
+   assign C5 = {C4[25:0],C4[27:26]};
+   assign D2 = {D4[26:0],D4[27]};
+   PC2 PC2_4(C5, D5, SubKey4);
+
+   assign C6 = {C5[25:0],C5[27:26]};
+   assign D2 = {D5[26:0],D5[27]};
+   PC2 PC2_5(C6, D6, SubKey5);
+
+   assign C7 = {C6[25:0],C6[27:26]};
+   assign D2 = {D6[26:0],D6[27]};
+   PC2 PC2_6(C6, D6, SubKey6);
+
+   assign C8 = {C7[25:0],C7[27:26]};
+   assign D2 = {D7[26:0],D7[27]};
+   PC2 PC2_7(C7, D7, SubKey7);
+
+   assign C9 = {C8[25:0],C8[27:26]};
+   assign D2 = {D8[26:0],D8[27]};
+   PC2 PC2_8(C8, D8, SubKey8);
+
+   assign C10 = {C9[26:0],C9[27]};
+   assign D2 = {D9[26:0],D9[27]};
+   PC2 PC2_9(C9, D9, SubKey9);
+
+   assign C11 = {C10[25:0],C10[27:26]};
+   assign D2 = {D10[26:0],D0[27]};
+   PC2 PC2_10(C10, D10, SubKey10);
+
+   assign C12 = {C11[25:0],C11[27:26]};
+   assign D2 = {D11[26:0],D1[27]};
+   PC2 PC2_11(C11, D11, SubKey11);
+
+   assign C13 = {C12[25:0],C12[27:26]};
+   assign D2 = {D12[26:0],D12[27]};
+   PC2 PC2_12(C12, D12, SubKey12);
+
+   assign C14 = {C13[25:0],C13[27:26]};
+   assign D2 = {D13[26:0],D13[27]};
+   PC2 PC2_13(C13, D13, SubKey13);
+
+   assign C15 = {C14[25:0],C14[27:26]};
+   assign D2 = {D14[26:0],D14[27]};
+   PC2 PC2_14(C14, D14, SubKey14);
+
+   assign C16 = {C15[25:0],C15[27:26]};
+   assign D2 = {D15[26:0],D15[27]};
+   PC2 PC2_15(C15, D15, SubKey15);
+
+   assign C17 = {C16[26:0],C16[27]};
+   assign D2 = {D16[26:0],D16[27]};
+   PC2 PC2_16(C16, D16, SubKey16);
+
 
 endmodule // GenerateKeys
 
@@ -64,8 +132,7 @@ module PC1 (key, left_block, right_block);
    assign left_block[2] = key[64-52];    
    assign left_block[1] = key[64-44];
    assign left_block[0] = key[64-36];
-
-
+   
    assign right_block[28] = key[64-63];
    assign right_block[27] = key[64-55];
    assign right_block[26] = key[64-47];
@@ -99,71 +166,72 @@ module PC1 (key, left_block, right_block);
 
 endmodule // PC1
 
-module PC2 (left_block, right_block, subkey);
+module PC2 (C, D, subkey);
 
 
-   input logic [27:0] left_block;
-   input logic [27:0] right_block;
+   input logic [55:0] C;
+   input logic [55:0] D;
+   output logic [47:0] subkey;
+   logic [55:0]smash;
+   assign smash = {C,D};
 
-   assign left_block[27] = key[64-57];
-   assign left_block[26] = key[64-49];
-   assign left_block[25] = key[64-41];   
-   assign left_block[24] = key[64-33];   
-   assign left_block[23] = key[64-25];
-   assign left_block[22] = key[64-17];   
-   assign left_block[21] = key[64-9];
-   assign left_block[20] = key[64-1];
-   assign left_block[19] = key[64-58];
-   assign left_block[18] = key[64-50];
-   assign left_block[17] = key[64-42];
-   assign left_block[16] = key[64-34];
-   assign left_block[15] = key[64-26];
-   assign left_block[14] = key[64-18];   
-   assign left_block[13] = key[64-10];
-   assign left_block[12] = key[64-2];   
-   assign left_block[11] = key[64-59];
-   assign left_block[10] = key[64-51];
-   assign left_block[9] = key[64-43];
-   assign left_block[8] = key[64-35];
-   assign left_block[7] = key[64-27];
-   assign left_block[6] = key[64-19];
-   assign left_block[5] = key[64-11];
-   assign left_block[4] = key[64-3];   
-   assign left_block[3] = key[64-60];
-   assign left_block[2] = key[64-52];    
-   assign left_block[1] = key[64-44];
-   assign left_block[0] = key[64-36];
-// start the mapping of the right block
-   assign right_block[28] = key[64-63];
-   assign right_block[27] = key[64-55];
-   assign right_block[26] = key[64-47];
-   assign right_block[25] = key[64-39];   
-   assign right_block[24] = key[64-31];   
-   assign right_block[23] = key[64-23];
-   assign right_block[22] = key[64-15];   
-   assign right_block[21] = key[64-7];
-   assign right_block[20] = key[64-62];
-   assign right_block[19] = key[64-54];
-   assign right_block[18] = key[64-46];
-   assign right_block[17] = key[64-38];
-   assign right_block[16] = key[64-30];
-   assign right_block[15] = key[64-22];
-   assign right_block[14] = key[64-14];   
-   assign right_block[13] = key[64-6];
-   assign right_block[12] = key[64-61];   
-   assign right_block[11] = key[64-53];
-   assign right_block[10] = key[64-45];
-   assign right_block[9] = key[64-37];
-   assign right_block[8] = key[64-29];
-   assign right_block[7] = key[64-21];
-   assign right_block[6] = key[64-13];
-   assign right_block[5] = key[64-5];
-   assign right_block[4] = key[64-28];   
-   assign right_block[3] = key[64-20];
-   assign right_block[2] = key[64-12];    
-   assign right_block[1] = key[64-4];
-
-   logic [55:0]        out_block;
+   assign subkey[27] = smash[64-57];
+   assign subkey[26] = smash[64-49];
+   assign subkey[25] = smash[64-41];   
+   assign subkey[24] = smash[64-33];   
+   assign subkey[23] = smash[64-25];
+   assign subkey[22] = smash[64-17];   
+   assign subkey[21] = smash[64-9];
+   assign subkey[20] = smash[64-1];
+   assign subkey[19] = smash[64-58];
+   assign subkey[18] = smash[64-50];
+   assign subkey[17] = smash[64-42];
+   assign subkey[16] = smash[64-34];
+   assign subkey[15] = smash[64-26];
+   assign subkey[14] = smash[64-18];   
+   assign subkey[13] = smash[64-10];
+   assign subkey[12] = smash[64-2];   
+   assign subkey[11] = smash[64-59];
+   assign subkey[10] = smash[64-51];
+   assign subkey[9] = smash[64-43];
+   assign subkey[8] = smash[64-35];
+   assign subkey[7] = smash[64-27];
+   assign subkey[6] = smash[64-19];
+   assign subkey[5] = smash[64-11];
+   assign subkey[4] = smash[64-3];   
+   assign subkey[3] = smash[64-60];
+   assign subkey[2] = smash[64-52];    
+   assign subkey[1] = smash[64-44];
+   assign subkey[0] = smash[64-36];
+   assign subkey[28] = smash[64-63];
+   assign subkey[27] = smash[64-55];
+   assign subkey[26] = smash[64-47];
+   assign subkey[25] = smash[64-39];   
+   assign subkey[24] = smash[64-31];   
+   assign subkey[23] = smash[64-23];
+   assign subkey[22] = smash[64-15];   
+   assign subkey[21] = smash[64-7];
+   assign subkey[20] = smash[64-62];
+   assign subkey[19] = smash[64-54];
+   assign subkey[18] = smash[64-46];
+   assign subkey[17] = smash[64-38];
+   assign subkey[16] = smash[64-30];
+   assign subkey[15] = smash[64-22];
+   assign subkey[14] = smash[64-14];   
+   assign subkey[13] = smash[64-6];
+   assign subkey[12] = smash[64-61];   
+   assign subkey[11] = smash[64-53];
+   assign subkey[10] = smash[64-45];
+   assign subkey[9] = smash[64-37];
+   assign subkey[8] = smash[64-29];
+   assign subkey[7] = smash[64-21];
+   assign subkey[6] = smash[64-13];
+   assign subkey[5] = smash[64-5];
+   assign subkey[4] = smash[64-28];   
+   assign subkey[3] = smash[64-20];
+   assign subkey[2] = smash[64-12];    
+   assign subkey[1] = smash[64-4];
+   
    output logic [47:0] subkey;
 
 endmodule // PC2
@@ -181,6 +249,9 @@ module EF (inp_block, out_block);
 
    input logic [31:0] inp_block;
    output logic [47:0] out_block;
+
+   assign output_block[48] = inp_block[48-32];
+   
 
 endmodule // EF
 
