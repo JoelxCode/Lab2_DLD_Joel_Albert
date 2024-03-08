@@ -318,7 +318,28 @@ endmodule // round1
 //This is where you begin to work ~J~
 
 ///XOR MY Before passing into the S-blocks
+module myXOR (out_block, subkey, inp_bits, out_bits);
+	input out_block;
+	input subkey;
+	output inp_bits;
+	output out_bits;
 
+    assign Subkey1  = subkey ^ out_block; // ^ is the XOR operator
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	assign Subkey1  = subkey ^ out_block;
+	
+endmodule
 
 // Initial Permutation
 module IP (inp_block, out_block);
@@ -546,8 +567,8 @@ endmodule // S1_Box
 
 module S2_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [11:6] inp_bits;
+   output logic [7:4] out_bits;
 
    always_comb
      begin
@@ -624,8 +645,8 @@ endmodule // S2_Box
 
 module S3_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [17:12] inp_bits;
+   output logic [11:8] out_bits;
 
    always_comb
      begin
@@ -702,8 +723,8 @@ endmodule // S3_Box
 
 module S4_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [23:18] inp_bits;
+   output logic [15:12] out_bits;
 
    always_comb
      begin
@@ -780,8 +801,8 @@ endmodule // S4_Box
 
 module S5_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [29:24] inp_bits;
+   output logic [19:16] out_bits;
 
    always_comb
      begin
@@ -858,8 +879,8 @@ endmodule // S5_Box
 
 module S6_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [35:30] inp_bits;
+   output logic [23:20] out_bits;
 
    always_comb
      begin
@@ -936,8 +957,8 @@ endmodule // S6_Box
 
 module S7_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [41:36] inp_bits;
+   output logic [27:24] out_bits;
 
    always_comb
      begin
@@ -1014,8 +1035,8 @@ endmodule // S7_Box
 
 module S8_Box (inp_bits, out_bits);
 
-   input logic [5:0] inp_bits;
-   output logic [3:0] out_bits;
+   input logic [47:42] inp_bits;
+   output logic [31:28] out_bits;
 
    always_comb
      begin
