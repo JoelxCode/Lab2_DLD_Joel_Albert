@@ -243,10 +243,60 @@ module EF (inp_block, out_block);
    input logic [31:0] inp_block;
    output logic [47:0] out_block;
 
-   assign output_block[48] = inp_block[48-32];
    
+   assign output_block[47] = inp_block[32-32];
+   assign output_block[46] = inp_block[32-1];
+   assign output_block[45] = inp_block[32-2];
+   assign output_block[44] = inp_block[32-3];
+   assign output_block[43] = inp_block[32-4];
+   assign output_block[42] = inp_block[32-5];
+   assign output_block[41] = inp_block[32-4];
+   assign output_block[40] = inp_block[32-5];
+   assign output_block[39] = inp_block[32-6];
+   assign output_block[38] = inp_block[32-7];
+   assign output_block[37] = inp_block[32-8];
+   assign output_block[36] = inp_block[32-9];
+   assign output_block[35] = inp_block[32-8];
+   assign output_block[34] = inp_block[32-9];
+   assign output_block[33] = inp_block[32-10];
+   assign output_block[32] = inp_block[32-11];
+   assign output_block[31] = inp_block[32-12];
+   assign output_block[30] = inp_block[32-13];
+   assign output_block[29] = inp_block[32-12];
+   assign output_block[28] = inp_block[32-13];
+   assign output_block[27] = inp_block[32-14];
+   assign output_block[26] = inp_block[32-15];
+   assign output_block[25] = inp_block[32-16];
+   assign output_block[24] = inp_block[32-17];
+   assign output_block[23] = inp_block[32-16];
+   assign output_block[22] = inp_block[32-17];
+   assign output_block[21] = inp_block[32-18];
+   assign output_block[20] = inp_block[32-19];
+   assign output_block[19] = inp_block[32-20];
+   assign output_block[18] = inp_block[32-21];
+   assign output_block[17] = inp_block[32-20];
+   assign output_block[16] = inp_block[32-21];
+   assign output_block[15] = inp_block[32-22];
+   assign output_block[14] = inp_block[32-23];
+   assign output_block[13] = inp_block[32-24];
+   assign output_block[12] = inp_block[32-25];
+   assign output_block[11] = inp_block[32-24];
+   assign output_block[10] = inp_block[32-25];
+   assign output_block[9] = inp_block[32-26];
+   assign output_block[8] = inp_block[32-27];
+   assign output_block[7] = inp_block[32-28];
+   assign output_block[6] = inp_block[32-29];
+   assign output_block[5] = inp_block[32-28];
+   assign output_block[4] = inp_block[32-29];
+   assign output_block[3] = inp_block[32-30];
+   assign output_block[2] = inp_block[32-31];
+   assign output_block[1] = inp_block[32-32];
+   assign output_block[1] = inp_block[32-1];
+
 
 endmodule // EF
+
+
 
 module feistel (inp_block, subkey, out_block);
 
@@ -266,6 +316,9 @@ module round (inp_block, subkey, out_block);
 endmodule // round1
 
 //This is where you begin to work ~J~
+
+///XOR MY Before passing into the S-blocks
+
 
 // Initial Permutation
 module IP (inp_block, out_block);
