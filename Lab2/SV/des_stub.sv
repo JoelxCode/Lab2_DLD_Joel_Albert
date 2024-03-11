@@ -27,72 +27,105 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    output logic [47:0] SubKey14;
    output logic [47:0] SubKey15;
    output logic [47:0] SubKey16;
-   
+
+   logic [27:0]D1;
+   logic [27:0]D2;
+   logic [27:0]D3;
+   logic [27:0]D4;
+   logic [27:0]D5;
+   logic [27:0]D6;
+   logic [27:0]D7;
+   logic [27:0]D8;
+   logic [27:0]D9;
+   logic [27:0]D10;
+   logic [27:0]D11;
+   logic [27:0]D12;
+   logic [27:0]D13;
+   logic [27:0]D14;
+   logic [27:0]D15;
+   logic [27:0]D16;
+   logic [27:0]C1;
+   logic [27:0]C2;
+   logic [27:0]C3;
+   logic [27:0]C4;
+   logic [27:0]C5;
+   logic [27:0]C6;
+   logic [27:0]C7;
+   logic [27:0]C8;
+   logic [27:0]C9;
+   logic [27:0]C10;
+   logic [27:0]C11;
+   logic [27:0]C12;
+   logic [27:0]C13;
+   logic [27:0]C14;
+   logic [27:0]C15;
+   logic [27:0]C16;
+
    //instantiate PC1
-   PC1 perm(key,C1,D1);
+   PC1 perm(Key,C1,D1);
    // Left Shifts (Creates our 15 Kn values)
    assign C2 = {C1[26:0],C1[27]};
    assign D2 = {D1[26:0],D1[27]};
    PC2 PC2_1(C2, D2, SubKey1);
 
    assign C3 = {C2[26:0],C2[27]};
-   assign D2 = {D2[26:0],D2[27]};
+   assign D3 = {D2[26:0],D2[27]};
    PC2 PC2_2(C3, D3, SubKey2);
    
    assign C4 = {C3[25:0],C3[27:26]};
-   assign D2 = {D3[26:0],D3[27]};
+   assign D4 = {D3[26:0],D3[27]};
    PC2 PC2_3(C4, D4, SubKey3);
 
    assign C5 = {C4[25:0],C4[27:26]};
-   assign D2 = {D4[26:0],D4[27]};
+   assign D5 = {D4[26:0],D4[27]};
    PC2 PC2_4(C5, D5, SubKey4);
 
    assign C6 = {C5[25:0],C5[27:26]};
-   assign D2 = {D5[26:0],D5[27]};
+   assign D6 = {D5[26:0],D5[27]};
    PC2 PC2_5(C6, D6, SubKey5);
 
    assign C7 = {C6[25:0],C6[27:26]};
-   assign D2 = {D6[26:0],D6[27]};
+   assign D7 = {D6[26:0],D6[27]};
    PC2 PC2_6(C6, D6, SubKey6);
 
    assign C8 = {C7[25:0],C7[27:26]};
-   assign D2 = {D7[26:0],D7[27]};
+   assign D8 = {D7[26:0],D7[27]};
    PC2 PC2_7(C7, D7, SubKey7);
 
    assign C9 = {C8[25:0],C8[27:26]};
-   assign D2 = {D8[26:0],D8[27]};
+   assign D9 = {D8[26:0],D8[27]};
    PC2 PC2_8(C8, D8, SubKey8);
 
    assign C10 = {C9[26:0],C9[27]};
-   assign D2 = {D9[26:0],D9[27]};
+   assign D10 = {D9[26:0],D9[27]};
    PC2 PC2_9(C9, D9, SubKey9);
 
    assign C11 = {C10[25:0],C10[27:26]};
-   assign D2 = {D10[26:0],D0[27]};
+   assign D11 = {D10[26:0],D10[27]};
    PC2 PC2_10(C10, D10, SubKey10);
 
    assign C12 = {C11[25:0],C11[27:26]};
-   assign D2 = {D11[26:0],D1[27]};
+   assign D12 = {D11[26:0],D1[27]};
    PC2 PC2_11(C11, D11, SubKey11);
 
    assign C13 = {C12[25:0],C12[27:26]};
-   assign D2 = {D12[26:0],D12[27]};
+   assign D13 = {D12[26:0],D12[27]};
    PC2 PC2_12(C12, D12, SubKey12);
 
    assign C14 = {C13[25:0],C13[27:26]};
-   assign D2 = {D13[26:0],D13[27]};
+   assign D14 = {D13[26:0],D13[27]};
    PC2 PC2_13(C13, D13, SubKey13);
 
    assign C15 = {C14[25:0],C14[27:26]};
-   assign D2 = {D14[26:0],D14[27]};
+   assign D15 = {D14[26:0],D14[27]};
    PC2 PC2_14(C14, D14, SubKey14);
 
    assign C16 = {C15[25:0],C15[27:26]};
-   assign D2 = {D15[26:0],D15[27]};
+   assign D16 = {D15[26:0],D15[27]};
    PC2 PC2_15(C15, D15, SubKey15);
 
    assign C17 = {C16[26:0],C16[27]};
-   assign D2 = {D16[26:0],D16[27]};
+   assign D17 = {D16[26:0],D16[27]};
    PC2 PC2_16(C16, D16, SubKey16);
 
 
@@ -169,12 +202,11 @@ endmodule // PC1
 module PC2 (C, D, subkey);
 
 
-   input logic [55:0] C;
-   input logic [55:0] D;
+   input logic [27:0] C;
+   input logic [27:0] D;
    output logic [47:0] subkey;
    logic [55:0]smash;
    assign smash = {C,D};
-
    assign subkey[47] = smash[56-14];
    assign subkey[46] = smash[56-17];
    assign subkey[45] = smash[56-11];   
@@ -225,23 +257,56 @@ module PC2 (C, D, subkey);
    assign subkey[0] = smash[56-32];
    
    
-   output logic [47:0] subkey;
 
 endmodule // PC2
 
 // Straight Function
-module SF (inp_block, out_block);
+module SF (inp_block, output_block);
 
    input logic [31:0] inp_block;
-   output logic [31:0] out_block;
+   output logic [31:0] output_block;
+
+   assign output_block[31] = inp_block[32-16];
+   assign output_block[30] = inp_block[32-7];
+   assign output_block[29] = inp_block[32-20];
+   assign output_block[28] = inp_block[32-21];
+   assign output_block[27] = inp_block[32-29];
+   assign output_block[26] = inp_block[32-12];
+   assign output_block[25] = inp_block[32-28];
+   assign output_block[24] = inp_block[32-17];
+   assign output_block[23] = inp_block[32-1];
+   assign output_block[22] = inp_block[32-15];
+   assign output_block[21] = inp_block[32-23];
+   assign output_block[20] = inp_block[32-26];
+   assign output_block[19] = inp_block[32-5];
+   assign output_block[18] = inp_block[32-18];
+   assign output_block[17] = inp_block[32-31];
+   assign output_block[16] = inp_block[32-10];
+   assign output_block[15] = inp_block[32-2];
+   assign output_block[14] = inp_block[32-8];
+   assign output_block[13] = inp_block[32-24];
+   assign output_block[12] = inp_block[32-14];
+   assign output_block[11] = inp_block[32-32];
+   assign output_block[10] = inp_block[32-27];
+   assign output_block[9] = inp_block[32-3];
+   assign output_block[8] = inp_block[32-9];
+   assign output_block[7] = inp_block[32-19];
+   assign output_block[6] = inp_block[32-13];
+   assign output_block[5] = inp_block[32-30];
+   assign output_block[4] = inp_block[32-6];
+   assign output_block[3] = inp_block[32-22];
+   assign output_block[2] = inp_block[32-11];
+   assign output_block[1] = inp_block[32-4];
+   assign output_block[0] = inp_block[32-25];
+   
 
 endmodule // SF
 
 // Expansion Function
-module EF (inp_block, out_block);
+module EF (inp_block, output_block);
 
    input logic [31:0] inp_block;
-   output logic [47:0] out_block;
+   output logic [47:0] output_block;
 
    
    assign output_block[47] = inp_block[32-32];
@@ -291,7 +356,7 @@ module EF (inp_block, out_block);
    assign output_block[3] = inp_block[32-30];
    assign output_block[2] = inp_block[32-31];
    assign output_block[1] = inp_block[32-32];
-   assign output_block[1] = inp_block[32-1];
+   assign output_block[0] = inp_block[32-1];
 
 
 endmodule // EF
@@ -299,47 +364,49 @@ endmodule // EF
 
 
 module feistel (inp_block, subkey, out_block);
-
    input logic [31:0]  inp_block;
    input logic [47:0]  subkey;
    output logic [31:0] out_block;
+
+	logic [47:0]ef_out; 
+	EF ef1(inp_block, ef_out);
+	logic [47:0]xor_out;
+	assign xor_out = subkey ^ ef_out; 
+	logic [31:0]s_out;
+	
+
+	S1_Box S1(xor_out[47:42], s_out[31:28]);
+	S2_Box S2(xor_out[41:36], s_out[27:24]);
+	S3_Box S3(xor_out[35:30], s_out[23:20]);
+	S4_Box S4(xor_out[29:24], s_out[19:16]);
+	S5_Box S5(xor_out[23:18], s_out[15:12]);
+	S6_Box S6(xor_out[17:12], s_out[11:8]);
+	S7_Box S7(xor_out[11:6], s_out[7:4]);
+	S7_Box S8(xor_out[5:0], s_out[3:0]);
+	
+
 
 endmodule // Feistel
 
 // DES block round
 module round (inp_block, subkey, out_block);
-
+	
    input logic [63:0]  inp_block;
    input logic [47:0]  subkey;
    output logic [63:0] out_block;
+   
+   logic [31:0]xor_out;
+   logic [31:0]xor_in;
+   
+   feistel F1(inp_block[31:0], subkey, xor_in);
+   assign xor_out = xor_in ^ inp_block[31:0];
+   
+
 
 endmodule // round1
 
-//This is where you begin to work ~J~
 
-///XOR MY Before passing into the S-blocks
-module myXOR (out_block, subkey, inp_bits, out_bits);
-	input out_block;
-	input subkey;
-	output inp_bits;
-	output out_bits;
 
-    assign Subkey1  = subkey ^ out_block; // ^ is the XOR operator
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	assign Subkey1  = subkey ^ out_block;
-	
-endmodule
 
 // Initial Permutation
 module IP (inp_block, out_block);
@@ -567,8 +634,8 @@ endmodule // S1_Box
 
 module S2_Box (inp_bits, out_bits);
 
-   input logic [11:6] inp_bits;
-   output logic [7:4] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -645,8 +712,8 @@ endmodule // S2_Box
 
 module S3_Box (inp_bits, out_bits);
 
-   input logic [17:12] inp_bits;
-   output logic [11:8] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -723,8 +790,8 @@ endmodule // S3_Box
 
 module S4_Box (inp_bits, out_bits);
 
-   input logic [23:18] inp_bits;
-   output logic [15:12] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -801,8 +868,8 @@ endmodule // S4_Box
 
 module S5_Box (inp_bits, out_bits);
 
-   input logic [29:24] inp_bits;
-   output logic [19:16] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -879,8 +946,8 @@ endmodule // S5_Box
 
 module S6_Box (inp_bits, out_bits);
 
-   input logic [35:30] inp_bits;
-   output logic [23:20] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -957,8 +1024,8 @@ endmodule // S6_Box
 
 module S7_Box (inp_bits, out_bits);
 
-   input logic [41:36] inp_bits;
-   output logic [27:24] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -1035,8 +1102,8 @@ endmodule // S7_Box
 
 module S8_Box (inp_bits, out_bits);
 
-   input logic [47:42] inp_bits;
-   output logic [31:28] out_bits;
+   input logic [5:0] inp_bits;
+   output logic [3:0] out_bits;
 
    always_comb
      begin
@@ -1118,51 +1185,88 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    logic [47:0] 	SubKey5, SubKey6, SubKey7, SubKey8;   
    logic [47:0] 	SubKey9, SubKey10, SubKey11, SubKey12;
    logic [47:0] 	SubKey13, SubKey14, SubKey15, SubKey16;
-
    logic [63:0] 	ip_out;   
-   logic [63:0] 	r16_out = 64'h0;   
-   
-   // SubKey generation
+    // Make round
+	
+	logic [63:0] r1_out, r2_out, r3_out, r4_out, r5_out, r6_out, r7_out, r8_out, r9_out, r10_out, r11_out, r12_out, r13_out, r14_out, r15_out, r16_out;
+   /// not correct 3/11 Look at the diagram
+   assign r1_out = {Key[0:31],xor_out};
+   assign r2_out = {SubKey1[0:31],xor_out};
+   assign r3_out = {SubKey2[0:31],xor_out};
+   assign r4_out = {SubKey3[0:31],xor_out};
+   assign r5_out = {SubKey4[0:31],xor_out};
+   assign r6_out = {SubKey5[0:31],xor_out};
+   assign r7_out = {SubKey6[0:31],xor_out};
+   assign r8_out = {SubKey7[0:31],xor_out};
+   assign r9_out = {SubKey8[0:31],xor_out};
+   assign r10_out = {SubKey9[0:31],xor_out};
+   assign r11_out = {SubKey10[0:31],xor_out};
+   assign r12_out = {SubKey11[0:31],xor_out};
+   assign r13_out = {SubKey12[0:31],xor_out};
+   assign r14_out = {SubKey13[0:31],xor_out};
+   assign r15_out = {SubKey14[0:31],xor_out};
+   assign r16_out = {SubKey15[0:31],xor_out};
+
+
    GenerateKeys k1 (key, SubKey1, SubKey2, SubKey3, SubKey4,
 		    SubKey5, SubKey6, SubKey7, SubKey8,
 		    SubKey9, SubKey10, SubKey11, SubKey12,
 		    SubKey13, SubKey14, SubKey15, SubKey16);
    // encrypt (encrypt=1) or decrypt (encrypt=0) 
+   logic [47:0] newSk1, newSk2, newSk3, newSk4, newSk5, newSk6, newSk7, newSk8, newSk9, newSk10, newSk11, newSk12, newSk13, newSk14, newSk15, newSk16;
+	assign newSk1 = (encrypt) ? SubKey1:SubKey16;
+	assign newSk2 = (encrypt) ? SubKey2:SubKey15;
+	assign newSk3 = (encrypt) ? SubKey3:SubKey14;
+	assign newSk4 = (encrypt) ? SubKey4:SubKey13;
+	assign newSk5 = (encrypt) ? SubKey5:SubKey12;
+	assign newSk6 = (encrypt) ? SubKey6:SubKey11;
+	assign newSk7 = (encrypt) ? SubKey7:SubKey10;
+	assign newSk8 = (encrypt) ? SubKey8:SubKey9;
+	assign newSk9 = (encrypt) ? SubKey9:SubKey8;
+	assign newSk10 = (encrypt) ? SubKey10:SubKey7;
+	assign newSk11 = (encrypt) ? SubKey11:SubKey6;
+	assign newSk12 = (encrypt) ? SubKey12:SubKey5;
+	assign newSk13 = (encrypt) ? SubKey13:SubKey4;
+	assign newSk14 = (encrypt) ? SubKey14:SubKey3;
+	assign newSk15 = (encrypt) ? SubKey15:SubKey2;
+	assign newSk16 = (encrypt) ? SubKey16:SubKey1;
+	
+ 
 
    // Initial Permutation (IP)
    IP b1 (plaintext, ip_out);
    // round 1
-   
+   round r1(ip_out, newSk1, r1_out);
    // round 2
-   
+   round r2(r1_out, newSk2, r2_out);
    // round 3
-   
+   round r3(r2_out, newSk3, r3_out);
    // round 4
-   
+   round r4(r3_out, newSk4, r4_out);
    // round 5
-   
+   round r5(r4_out, newSk5, r5_out);
    // round 6
-   
+   round r6(r5_out, newSk6, r6_out);
    // round 7
-   
+   round r7(r6_out, newSk7, r7_out);
    // round 8
-   
+   round r8(r7_out, newSk8, r8_out);
    // round 9
-   
+   round r9(r8_out, newSk9, r9_out);
    // round 10
-   
+   round r10(r9_out, newSk10, r10_out);
    // round 11
-   
+   round r11(r10_out, newSk11, r11_out);
    // round 12
-   
+   round r12(r11_out, newSk12, r12_out);
    // round 13
-   
+   round r13(r12_out, newSk13, r13_out);
    // round 14
-   
+   round r14(r13_out, newSk14, r14_out);
    // round 15
-   
+   round r15(r14_out, newSk15, r15_out);
    // round 16
-
+   round r16(r15_out, newSk16, r16_out);
    // Final Permutation (IP^{-1}) (swap output of round16)
    FP FP({r16_out[31:0], r16_out[63:32]}, ciphertext);
    
