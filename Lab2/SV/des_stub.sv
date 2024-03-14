@@ -1224,7 +1224,7 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    // encrypt (encrypt=1) or decrypt (encrypt=0) 
    logic [47:0] newSk1, newSk2, newSk3, newSk4, newSk5, newSk6, newSk7, newSk8, newSk9, newSk10, newSk11, newSk12, newSk13, newSk14, newSk15, newSk16;
 	assign newSk1 = (encrypt) ? SubKey1:SubKey16;
-	assign newSk2 = (enc\nickrypt) ? SubKey2:SubKey15;
+	assign newSk2 = (encrypt) ? SubKey2:SubKey15;
 	assign newSk3 = (encrypt) ? SubKey3:SubKey14;
 	assign newSk4 = (encrypt) ? SubKey4:SubKey13;
 	assign newSk5 = (encrypt) ? SubKey5:SubKey12;

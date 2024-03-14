@@ -1,9 +1,9 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-| Date             : Wed Mar 13 20:06:51 2024
+| Date             : Wed Mar 13 20:32:11 2024
 | Host             : CEAT-ENDV350-03 running 64-bit major release  (build 9200)
-| Command          : report_power -file top_demo_power_routed.rpt -pb top_demo_power_summary_routed.pb -rpx top_demo_power_routed.rpx
+| Command          : report_power -file C:/Users/jonnaji/Lab2_DLD_Joel_Albert/Lab2/Vivado/power_power_1.txt -name power_1
 | Design           : top_demo
 | Device           : xc7z020clg484-1
 | Design State     : routed
@@ -53,7 +53,7 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Slice Logic    |   157.854 |     1149 |       --- |             --- |
-|   LUT as Logic |   157.832 |      934 |     53200 |            1.76 |
+|   LUT as Logic |   157.832 |      951 |     53200 |            1.79 |
 |   CARRY4       |     0.009 |        5 |     13300 |            0.04 |
 |   Register     |     0.007 |       19 |    106400 |            0.02 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
