@@ -44,6 +44,7 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    logic [27:0]D14;
    logic [27:0]D15;
    logic [27:0]D16;
+   logic [27:0]D17;
    logic [27:0]C1;
    logic [27:0]C2;
    logic [27:0]C3;
@@ -60,6 +61,7 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    logic [27:0]C14;
    logic [27:0]C15;
    logic [27:0]C16;
+   logic [27:0]C17;
 
    //instantiate PC1
    PC1 perm(Key,C1,D1);
@@ -73,60 +75,60 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    PC2 PC2_2(C3, D3, SubKey2);
    
    assign C4 = {C3[25:0],C3[27:26]};
-   assign D4 = {D3[26:0],D3[27]};
+   assign D4 = {D3[25:0],D3[27:26]};
    PC2 PC2_3(C4, D4, SubKey3);
 
    assign C5 = {C4[25:0],C4[27:26]};
-   assign D5 = {D4[26:0],D4[27]};
+   assign D5 = {D4[25:0],D4[27:26]};
    PC2 PC2_4(C5, D5, SubKey4);
 
    assign C6 = {C5[25:0],C5[27:26]};
-   assign D6 = {D5[26:0],D5[27]};
+   assign D6 = {D5[25:0],D5[27:26]};
    PC2 PC2_5(C6, D6, SubKey5);
 
    assign C7 = {C6[25:0],C6[27:26]};
-   assign D7 = {D6[26:0],D6[27]};
-   PC2 PC2_6(C6, D6, SubKey6);
+   assign D7 = {D6[25:0],D6[27:26]};
+   PC2 PC2_6(C7, D7, SubKey6);
 
    assign C8 = {C7[25:0],C7[27:26]};
-   assign D8 = {D7[26:0],D7[27]};
-   PC2 PC2_7(C7, D7, SubKey7);
+   assign D8 = {D7[25:0],D7[27:26]};
+   PC2 PC2_7(C8, D8, SubKey7);
 
    assign C9 = {C8[25:0],C8[27:26]};
-   assign D9 = {D8[26:0],D8[27]};
-   PC2 PC2_8(C8, D8, SubKey8);
+   assign D9 = {D8[25:0],D8[27:26]};
+   PC2 PC2_8(C9, D9, SubKey8);
 
    assign C10 = {C9[26:0],C9[27]};
    assign D10 = {D9[26:0],D9[27]};
-   PC2 PC2_9(C9, D9, SubKey9);
+   PC2 PC2_9(C10, D10, SubKey9);
 
    assign C11 = {C10[25:0],C10[27:26]};
-   assign D11 = {D10[26:0],D10[27]};
-   PC2 PC2_10(C10, D10, SubKey10);
+   assign D11 = {D10[25:0],D10[27:26]};
+   PC2 PC2_10(C11, D11, SubKey10);
 
    assign C12 = {C11[25:0],C11[27:26]};
-   assign D12 = {D11[26:0],D1[27]};
-   PC2 PC2_11(C11, D11, SubKey11);
+   assign D12 = {D11[25:0],D11[27:26]};
+   PC2 PC2_11(C12, D12, SubKey11);
 
    assign C13 = {C12[25:0],C12[27:26]};
-   assign D13 = {D12[26:0],D12[27]};
-   PC2 PC2_12(C12, D12, SubKey12);
+   assign D13 = {D12[25:0],D12[27:26]};
+   PC2 PC2_12(C13, D13, SubKey12);
 
    assign C14 = {C13[25:0],C13[27:26]};
-   assign D14 = {D13[26:0],D13[27]};
-   PC2 PC2_13(C13, D13, SubKey13);
+   assign D14 = {D13[25:0],D13[27:26]};
+   PC2 PC2_13(C14, D14, SubKey13);
 
    assign C15 = {C14[25:0],C14[27:26]};
-   assign D15 = {D14[26:0],D14[27]};
-   PC2 PC2_14(C14, D14, SubKey14);
+   assign D15 = {D14[25:0],D14[27:26]};
+   PC2 PC2_14(C15, D15, SubKey14);
 
    assign C16 = {C15[25:0],C15[27:26]};
-   assign D16 = {D15[26:0],D15[27]};
-   PC2 PC2_15(C15, D15, SubKey15);
+   assign D16 = {D15[25:0],D15[27:26]};
+   PC2 PC2_15(C16, D16, SubKey15);
 
    assign C17 = {C16[26:0],C16[27]};
    assign D17 = {D16[26:0],D16[27]};
-   PC2 PC2_16(C16, D16, SubKey16);
+   PC2 PC2_16(C17, D17, SubKey16);
 
 
 endmodule // GenerateKeys
@@ -166,34 +168,34 @@ module PC1 (key, left_block, right_block);
    assign left_block[1] = key[64-44];
    assign left_block[0] = key[64-36];
    
-   assign right_block[28] = key[64-63];
-   assign right_block[27] = key[64-55];
-   assign right_block[26] = key[64-47];
-   assign right_block[25] = key[64-39];   
-   assign right_block[24] = key[64-31];   
-   assign right_block[23] = key[64-23];
-   assign right_block[22] = key[64-15];   
-   assign right_block[21] = key[64-7];
-   assign right_block[20] = key[64-62];
-   assign right_block[19] = key[64-54];
-   assign right_block[18] = key[64-46];
-   assign right_block[17] = key[64-38];
-   assign right_block[16] = key[64-30];
-   assign right_block[15] = key[64-22];
-   assign right_block[14] = key[64-14];   
-   assign right_block[13] = key[64-6];
-   assign right_block[12] = key[64-61];   
-   assign right_block[11] = key[64-53];
-   assign right_block[10] = key[64-45];
-   assign right_block[9] = key[64-37];
-   assign right_block[8] = key[64-29];
-   assign right_block[7] = key[64-21];
-   assign right_block[6] = key[64-13];
-   assign right_block[5] = key[64-5];
-   assign right_block[4] = key[64-28];   
-   assign right_block[3] = key[64-20];
-   assign right_block[2] = key[64-12];    
-   assign right_block[1] = key[64-4];
+   assign right_block[27] = key[64-63];
+   assign right_block[26] = key[64-55];
+   assign right_block[25] = key[64-47];
+   assign right_block[24] = key[64-39];   
+   assign right_block[23] = key[64-31];   
+   assign right_block[22] = key[64-23];
+   assign right_block[21] = key[64-15];   
+   assign right_block[20] = key[64-7];
+   assign right_block[19] = key[64-62];
+   assign right_block[18] = key[64-54];
+   assign right_block[17] = key[64-46];
+   assign right_block[16] = key[64-38];
+   assign right_block[15] = key[64-30];
+   assign right_block[14] = key[64-22];
+   assign right_block[13] = key[64-14];   
+   assign right_block[12] = key[64-6];
+   assign right_block[11] = key[64-61];   
+   assign right_block[10] = key[64-53];
+   assign right_block[9] = key[64-45];
+   assign right_block[8] = key[64-37];
+   assign right_block[7] = key[64-29];
+   assign right_block[6] = key[64-21];
+   assign right_block[5] = key[64-13];
+   assign right_block[4] = key[64-5];
+   assign right_block[3] = key[64-28];   
+   assign right_block[2] = key[64-20];
+   assign right_block[1] = key[64-12];    
+   assign right_block[0] = key[64-4];
 
    logic [55:0]        out_block;
 
@@ -382,7 +384,9 @@ module feistel (inp_block, subkey, out_block);
 	S5_Box S5(xor_out[23:18], s_out[15:12]);
 	S6_Box S6(xor_out[17:12], s_out[11:8]);
 	S7_Box S7(xor_out[11:6], s_out[7:4]);
-	S7_Box S8(xor_out[5:0], s_out[3:0]);
+	S8_Box S8(xor_out[5:0], s_out[3:0]);
+
+	SF sf1(s_out,out_block);
 	
 
 
@@ -399,7 +403,10 @@ module round (inp_block, subkey, out_block);
    logic [31:0]xor_in;
    
    feistel F1(inp_block[31:0], subkey, xor_in);
-   assign xor_out = xor_in ^ inp_block[31:0];
+   assign xor_out = xor_in ^ inp_block[63:32];
+
+   assign out_block[63:32] = inp_block[31:0];
+   assign out_block[31:0] = xor_out;
    
 
 
@@ -1180,32 +1187,34 @@ endmodule // S8_Box
 
 module DES (input logic [63:0] key, input logic [63:0] plaintext, 
 	    input logic encrypt, output logic [63:0] ciphertext);
-
+	
    logic [47:0] 	SubKey1, SubKey2, SubKey3, SubKey4;   
    logic [47:0] 	SubKey5, SubKey6, SubKey7, SubKey8;   
    logic [47:0] 	SubKey9, SubKey10, SubKey11, SubKey12;
    logic [47:0] 	SubKey13, SubKey14, SubKey15, SubKey16;
-   logic [63:0] 	ip_out;   
-    // Make round
+   logic [63:0] 	ip_out; 
+   logic [31:0]  	xor_out;
+   
+ // Make rounds
 	
 	logic [63:0] r1_out, r2_out, r3_out, r4_out, r5_out, r6_out, r7_out, r8_out, r9_out, r10_out, r11_out, r12_out, r13_out, r14_out, r15_out, r16_out;
    /// not correct 3/11 Look at the diagram
-   assign r1_out = {Key[0:31],xor_out};
-   assign r2_out = {SubKey1[0:31],xor_out};
-   assign r3_out = {SubKey2[0:31],xor_out};
-   assign r4_out = {SubKey3[0:31],xor_out};
-   assign r5_out = {SubKey4[0:31],xor_out};
-   assign r6_out = {SubKey5[0:31],xor_out};
-   assign r7_out = {SubKey6[0:31],xor_out};
-   assign r8_out = {SubKey7[0:31],xor_out};
-   assign r9_out = {SubKey8[0:31],xor_out};
-   assign r10_out = {SubKey9[0:31],xor_out};
-   assign r11_out = {SubKey10[0:31],xor_out};
-   assign r12_out = {SubKey11[0:31],xor_out};
-   assign r13_out = {SubKey12[0:31],xor_out};
-   assign r14_out = {SubKey13[0:31],xor_out};
-   assign r15_out = {SubKey14[0:31],xor_out};
-   assign r16_out = {SubKey15[0:31],xor_out};
+   /*assign r1_out = {key[31:0],xor_out};
+   assign r2_out = {SubKey1[31:0],xor_out};
+   assign r3_out = {SubKey2[31:0],xor_out};
+   assign r4_out = {SubKey3[31:0],xor_out};
+   assign r5_out = {SubKey4[31:0],xor_out};
+   assign r6_out = {SubKey5[31:0],xor_out};
+   assign r7_out = {SubKey6[31:0],xor_out};
+   assign r8_out = {SubKey7[31:0],xor_out};
+   assign r9_out = {SubKey8[31:0],xor_out};
+   assign r10_out = {SubKey9[31:0],xor_out};
+   assign r11_out = {SubKey10[31:0],xor_out};
+   assign r12_out = {SubKey11[31:0],xor_out};
+   assign r13_out = {SubKey12[31:0],xor_out};
+   assign r14_out = {SubKey13[31:0],xor_out};
+   assign r15_out = {SubKey14[31:0],xor_out};
+   assign r16_out = {SubKey15[31:0],xor_out};*/
 
 
    GenerateKeys k1 (key, SubKey1, SubKey2, SubKey3, SubKey4,
@@ -1215,7 +1224,7 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    // encrypt (encrypt=1) or decrypt (encrypt=0) 
    logic [47:0] newSk1, newSk2, newSk3, newSk4, newSk5, newSk6, newSk7, newSk8, newSk9, newSk10, newSk11, newSk12, newSk13, newSk14, newSk15, newSk16;
 	assign newSk1 = (encrypt) ? SubKey1:SubKey16;
-	assign newSk2 = (encrypt) ? SubKey2:SubKey15;
+	assign newSk2 = (enc\nickrypt) ? SubKey2:SubKey15;
 	assign newSk3 = (encrypt) ? SubKey3:SubKey14;
 	assign newSk4 = (encrypt) ? SubKey4:SubKey13;
 	assign newSk5 = (encrypt) ? SubKey5:SubKey12;

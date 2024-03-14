@@ -12,8 +12,11 @@
 # //  18 U.S.C. Section 1905.
 # //
 # do des.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is nnaji@DESKTOP-D4E0L2U.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 13:23:22 on Mar 11,2024
+# Start time: 18:24:26 on Mar 13,2024
 # vlog -reportprogress 300 des_stub.sv tb_des.sv 
 # -- Compiling module GenerateKeys
 # -- Compiling module PC1
@@ -36,13 +39,11 @@
 # -- Compiling module stimulus
 # 
 # Top level modules:
-# 	SF
-# 	S8_Box
 # 	stimulus
-# End time: 13:23:22 on Mar 11,2024, Elapsed time: 0:00:00
+# End time: 18:24:26 on Mar 13,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.stimulus 
-# Start time: 13:23:22 on Mar 11,2024
+# Start time: 18:24:26 on Mar 13,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # Loading sv_std.std
 # Loading work.stimulus(fast)
@@ -61,8 +62,15 @@
 # Loading work.S5_Box(fast)
 # Loading work.S6_Box(fast)
 # Loading work.S7_Box(fast)
+# Loading work.S8_Box(fast)
+# Loading work.SF(fast)
 # Loading work.FP(fast)
 # .main_pane.wave.interior.cs.body.pw.wf
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: nnaji  Hostname: DESKTOP-D4E0L2U  ProcessID: 12236
+#           Attempting to use alternate WLF file "./wlftx7aejx".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftx7aejx
 #          8 tests completed with          0 errors
 # ** Note: $finish    : tb_des.sv(61)
 #    Time: 75 ns  Iteration: 1  Instance: /stimulus
